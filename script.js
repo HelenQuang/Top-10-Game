@@ -6,6 +6,7 @@ const richestPeople = document.getElementById("richest-people");
 const mostProgrammingLanguages = document.getElementById(
   "most-programming-languages"
 );
+
 const check1 = document.getElementById("check1");
 const check2 = document.getElementById("check2");
 const check3 = document.getElementById("check3");
@@ -63,13 +64,15 @@ const programmingLanguageArr = [
   "Scala",
 ];
 
-// Store list items
 const listItems1 = [];
 const listItems2 = [];
 const listItems3 = [];
 const listItems4 = [];
 
-let dragStartIndex;
+let dragStartIndex1;
+let dragStartIndex2;
+let dragStartIndex3;
+let dragStartIndex4;
 
 //Create list item into DOM
 const createList1 = () => {
@@ -84,7 +87,7 @@ const createList1 = () => {
 
       listItem.innerHTML = `
     <span class="number">${index + 1}</span>
-    <div class="draggable" draggable="true"> 
+    <div class="draggable1" draggable="true"> 
       <p class="item-name">${item}</p>
       <i class="fas fa-grip-lines"></i>
     `;
@@ -95,18 +98,44 @@ const createList1 = () => {
     });
 
   const swapItems = (fromIndex, toIndex) => {
-    const item1 = listItems1[fromIndex].querySelector(".draggable");
-    const item2 = listItems1[toIndex].querySelector(".draggable");
+    const item1 = listItems1[fromIndex].querySelector(".draggable1");
+    const item2 = listItems1[toIndex].querySelector(".draggable1");
 
     listItems1[fromIndex].appendChild(item2);
     listItems1[toIndex].appendChild(item1);
   };
 
-  addEventListeners(swapItems);
+  const draggables = document.querySelectorAll(".draggable1");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+      dragStartIndex1 = +draggable.closest("li").getAttribute("data-index");
+    });
+  });
+
+  const dragListItems = document.querySelectorAll(".draggable-list1 li");
+  dragListItems.forEach((item) => {
+    item.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    item.addEventListener("drop", () => {
+      const dragEndIndex = item.getAttribute("data-index");
+      swapItems(dragStartIndex1, dragEndIndex);
+      item.classList.remove("over");
+    });
+
+    item.addEventListener("dragenter", () => {
+      item.classList.add("over");
+    });
+
+    item.addEventListener("dragleave", () => {
+      item.classList.remove("over");
+    });
+  });
 
   const checkOrder = () => {
     listItems1.forEach((listItem, index) => {
-      const itemName = listItem.querySelector(".draggable").innerText.trim();
+      const itemName = listItem.querySelector(".draggable1").innerText.trim();
 
       if (itemName !== mostPopulatedArr[index]) {
         listItem.classList.add("wrong");
@@ -132,7 +161,7 @@ const createList2 = () => {
 
       listItem.innerHTML = `
     <span class="number">${index + 1}</span>
-    <div class="draggable" draggable="true">
+    <div class="draggable2" draggable="true">
       <p class="item-name">${item}</p>
       <i class="fas fa-grip-lines"></i>
     `;
@@ -143,18 +172,43 @@ const createList2 = () => {
     });
 
   const swapItems = (fromIndex, toIndex) => {
-    const item1 = listItems2[fromIndex].querySelector(".draggable");
-    const item2 = listItems2[toIndex].querySelector(".draggable");
+    const item1 = listItems2[fromIndex].querySelector(".draggable2");
+    const item2 = listItems2[toIndex].querySelector(".draggable2");
 
     listItems2[fromIndex].appendChild(item2);
     listItems2[toIndex].appendChild(item1);
   };
 
-  addEventListeners(swapItems);
+  const draggables = document.querySelectorAll(".draggable2");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+      dragStartIndex2 = +draggable.closest("li").getAttribute("data-index");
+    });
+  });
 
+  const dragListItems = document.querySelectorAll(".draggable-list2 li");
+  dragListItems.forEach((item) => {
+    item.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    item.addEventListener("drop", () => {
+      const dragEndIndex = item.getAttribute("data-index");
+      swapItems(dragStartIndex2, dragEndIndex);
+      item.classList.remove("over");
+    });
+
+    item.addEventListener("dragenter", () => {
+      item.classList.add("over");
+    });
+
+    item.addEventListener("dragleave", () => {
+      item.classList.remove("over");
+    });
+  });
   const checkOrder = () => {
     listItems2.forEach((listItem, index) => {
-      const itemName = listItem.querySelector(".draggable").innerText.trim();
+      const itemName = listItem.querySelector(".draggable2").innerText.trim();
 
       if (itemName !== mostSpokenLanguageArr[index]) {
         listItem.classList.add("wrong");
@@ -180,7 +234,7 @@ const createList3 = () => {
 
       listItem.innerHTML = `
     <span class="number">${index + 1}</span>
-    <div class="draggable" draggable="true">
+    <div class="draggable3" draggable="true">
       <p class="item-name">${item}</p>
       <i class="fas fa-grip-lines"></i>
     `;
@@ -191,18 +245,44 @@ const createList3 = () => {
     });
 
   const swapItems = (fromIndex, toIndex) => {
-    const item1 = listItems3[fromIndex].querySelector(".draggable");
-    const item2 = listItems3[toIndex].querySelector(".draggable");
+    const item1 = listItems3[fromIndex].querySelector(".draggable3");
+    const item2 = listItems3[toIndex].querySelector(".draggable3");
 
     listItems3[fromIndex].appendChild(item2);
     listItems3[toIndex].appendChild(item1);
   };
 
-  addEventListeners(swapItems);
+  const draggables = document.querySelectorAll(".draggable3");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+      dragStartIndex3 = +draggable.closest("li").getAttribute("data-index");
+    });
+  });
+
+  const dragListItems = document.querySelectorAll(".draggable-list3 li");
+  dragListItems.forEach((item) => {
+    item.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    item.addEventListener("drop", () => {
+      const dragEndIndex = item.getAttribute("data-index");
+      swapItems(dragStartIndex3, dragEndIndex);
+      item.classList.remove("over");
+    });
+
+    item.addEventListener("dragenter", () => {
+      item.classList.add("over");
+    });
+
+    item.addEventListener("dragleave", () => {
+      item.classList.remove("over");
+    });
+  });
 
   const checkOrder = () => {
     listItems3.forEach((listItem, index) => {
-      const itemName = listItem.querySelector(".draggable").innerText.trim();
+      const itemName = listItem.querySelector(".draggable3").innerText.trim();
 
       if (itemName !== richestPeopleArr[index]) {
         listItem.classList.add("wrong");
@@ -228,7 +308,7 @@ const createList4 = () => {
 
       listItem.innerHTML = `
     <span class="number">${index + 1}</span>
-    <div class="draggable" draggable="true">
+    <div class="draggable4" draggable="true">
       <p class="item-name">${item}</p>
       <i class="fas fa-grip-lines"></i>
     `;
@@ -239,42 +319,21 @@ const createList4 = () => {
     });
 
   const swapItems = (fromIndex, toIndex) => {
-    const item1 = listItems4[fromIndex].querySelector(".draggable");
-    const item2 = listItems4[toIndex].querySelector(".draggable");
+    const item1 = listItems4[fromIndex].querySelector(".draggable4");
+    const item2 = listItems4[toIndex].querySelector(".draggable4");
 
     listItems4[fromIndex].appendChild(item2);
     listItems4[toIndex].appendChild(item1);
   };
 
-  addEventListeners(swapItems);
-
-  const checkOrder = () => {
-    listItems4.forEach((listItem, index) => {
-      const itemName = listItem.querySelector(".draggable").innerText.trim();
-
-      if (itemName !== programmingLanguageArr[index]) {
-        listItem.classList.add("wrong");
-      } else {
-        listItem.classList.remove("wrong");
-        listItem.classList.add("right");
-      }
-    });
-  };
-
-  check4.addEventListener("click", checkOrder);
-};
-
-//Add event listeners
-const addEventListeners = (swapItemFunction) => {
-  const draggables = document.querySelectorAll(".draggable");
-  const dragListItems = document.querySelectorAll(".draggable-list li");
-
+  const draggables = document.querySelectorAll(".draggable4");
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", () => {
-      dragStartIndex = +draggable.closest("li").getAttribute("data-index");
+      dragStartIndex4 = +draggable.closest("li").getAttribute("data-index");
     });
   });
 
+  const dragListItems = document.querySelectorAll(".draggable-list4 li");
   dragListItems.forEach((item) => {
     item.addEventListener("dragover", (e) => {
       e.preventDefault();
@@ -282,7 +341,7 @@ const addEventListeners = (swapItemFunction) => {
 
     item.addEventListener("drop", () => {
       const dragEndIndex = item.getAttribute("data-index");
-      swapItemFunction(dragStartIndex, dragEndIndex);
+      swapItems(dragStartIndex4, dragEndIndex);
       item.classList.remove("over");
     });
 
@@ -294,6 +353,21 @@ const addEventListeners = (swapItemFunction) => {
       item.classList.remove("over");
     });
   });
+
+  const checkOrder = () => {
+    listItems4.forEach((listItem, index) => {
+      const itemName = listItem.querySelector(".draggable4").innerText.trim();
+
+      if (itemName !== programmingLanguageArr[index]) {
+        listItem.classList.add("wrong");
+      } else {
+        listItem.classList.remove("wrong");
+        listItem.classList.add("right");
+      }
+    });
+  };
+
+  check4.addEventListener("click", checkOrder);
 };
 
 createList1();
